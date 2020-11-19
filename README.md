@@ -1,4 +1,4 @@
-# gbi2
+# Galaxy Brain Initiative
 
 ## Project setup
 ```

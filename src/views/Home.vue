@@ -2,10 +2,18 @@
     <div class="home-body">
         <div class="slider-box">
         <transition name="slide">
-            <div v-if="state.currentSlide === 0" class="slider-div first-img"></div>
-            <div v-else-if="state.currentSlide === 1" class="slider-div second-img"></div>
-            <div v-else-if="state.currentSlide === 2" class="slider-div third-img"></div>
-            <div v-else-if="state.currentSlide === 3" class="slider-div fourth-img"></div>
+            <div v-if="state.currentSlide === 0" class="slider-div first-img">
+                <h2 class="card-title">Boost your congitive abilities to new levels</h2>
+            </div>
+            <div v-else-if="state.currentSlide === 1" class="slider-div second-img">
+                <h2 class="card-title">Maximize your energistic synergy</h2>
+            </div>
+            <div v-else-if="state.currentSlide === 2" class="slider-div third-img">
+                <h2 class="card-title">Develop the means to outwit the AI overlords</h2>
+            </div>
+            <div v-else-if="state.currentSlide === 3" class="slider-div fourth-img">
+                <h2 class="card-title">Inherit emotional balance from your surrounding spirits</h2>
+            </div>
         </transition>
         </div>
         <h1>Home</h1>
@@ -44,6 +52,7 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Subrayada&display=swap');
 .slider-box {
     background-color: black;
     height: 500px;
@@ -87,5 +96,20 @@ export default {
 .slide-leave-from {
     opacity: 0;
     transform: translateX(-100%)
+}
+
+.card-title {
+    margin: 0;
+    font-family: 'Montserrat Subrayada', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    color: white;
+    text-shadow: 3px 3px 0 #000,
+     -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
 }
 </style>

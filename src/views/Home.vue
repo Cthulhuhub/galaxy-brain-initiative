@@ -26,8 +26,8 @@ export default {
     name: "Home",
     setup() {
         const state = reactive({
-        currentSlide: 0,
-        interval: ''
+            currentSlide: 0,
+            interval: ''
         })
 
         onMounted(() => {
@@ -41,11 +41,11 @@ export default {
         })
 
         onUnmounted(() => {
-        clearInterval(state.interval)
+            clearInterval(state.interval)
         })
 
         return {
-        state
+            state
         }
     }
 }
@@ -87,6 +87,7 @@ export default {
 .slide-enter-active,
 .slide-leave-active {
     transition: all 2s ease;
+    opacity: 100;
 }
 
 .slide-enter-from {
@@ -103,7 +104,7 @@ export default {
     font-family: 'Montserrat Subrayada', sans-serif;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     height: 100%;
     color: white;
     text-shadow: 3px 3px 0 #000,

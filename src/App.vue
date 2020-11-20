@@ -1,12 +1,21 @@
 <template>
 <div id="app">
-  <router-view/>
+  <nav>
+    <NavBar :name="$route.name"/>
+  </nav>
+  <main>
+    <router-view/>
+  </main>
 </div>
 </template>
 
 <script>
+import NavBar from './components/NavBar.vue'
 export default {
   name: 'App',
+  components: {
+    NavBar
+  }
 }
 </script>
 
@@ -20,7 +29,7 @@ a {
 body {
   font-family: 'Xanh Mono', monospace;
   font-size: 30px;
-  background-color: rgb(228, 213, 172);
+  background-color: rgb(246, 237, 250);
   margin: 0;
 }
 </style>

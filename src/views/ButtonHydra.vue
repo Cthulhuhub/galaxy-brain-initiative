@@ -1,10 +1,4 @@
 <template>
-    <div class="nav-bar">
-        <div>Experience Synergy</div>
-        <div>Actualize Direction</div>
-        <div>Innovate Innovation</div>
-        <a href="https://en.wikipedia.org/wiki/Bread" target="_blank">learn about bread</a>
-    </div>
     <div class="toast-button">Click hear for DE@LS oN Mega Toast! :) (Mega toast doesn't solve any issues with mega birds)</div>
     <div class="secret-button-wrapper">
         <a href="https://youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="secret-button">secret</a>
@@ -64,21 +58,6 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Subrayada&display=swap');
-.nav-bar{
-    font-family: 'Montserrat Subrayada', sans-serif;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    height: 100px;
-    background-color: rgb(72, 135, 207);
-    box-shadow: 4px 4px 4px 4px rgba(88, 88, 88, 0.116);
-    border-radius: 4px;
-    margin-bottom: 70px;
-    color:white;
-}
-
 .toast-button{
     border: solid 1px black;
     background-color: white;
@@ -99,11 +78,11 @@ export default {
 
 .secret-button-wrapper{
     margin-top: 20px;
-    color: rgb(228, 213, 172);
+    color: rgb(246, 237, 250);
 }
 
 .secret-button{
-    color: rgb(228, 213, 172);
+    color: rgb(246, 237, 250);
     margin-top: 19px;
     height: 40px;
     width: 40px;

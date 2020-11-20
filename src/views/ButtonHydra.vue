@@ -31,7 +31,6 @@ export default {
 
             if (parseInt(e.target.id, 10) === winner) {
                 state.winState = true
-                console.log('You win!')
             }
         }
 

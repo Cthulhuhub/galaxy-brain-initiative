@@ -7,9 +7,14 @@ const routes = [
     component: () => import('../views/Home.vue')
   },
   {
-    path: '/puzzles/button-hydra',
+    path: '/exercises/button-hydra',
     name: 'ButtonHydra',
     component: () => import('../views/ButtonHydra.vue')
+  },
+  {
+    path: '/exercises',
+    name: 'Exercises',
+    component: () => import('../views/Exercises.vue')
   }
 ]
 

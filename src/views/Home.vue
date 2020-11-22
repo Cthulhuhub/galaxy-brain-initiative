@@ -1,22 +1,21 @@
 <template>
     <div class="home-body">
         <div class="slider-box">
-        <transition name="slide">
-            <div v-if="state.currentSlide === 0" class="slider-div first-img">
-                <h2 class="card-title">Boost your congitive abilities to new levels</h2>
-            </div>
-            <div v-else-if="state.currentSlide === 1" class="slider-div second-img">
-                <h2 class="card-title">Maximize your energistic synergy</h2>
-            </div>
-            <div v-else-if="state.currentSlide === 2" class="slider-div third-img">
-                <h2 class="card-title">Develop the means to outwit the AI overlords</h2>
-            </div>
-            <div v-else-if="state.currentSlide === 3" class="slider-div fourth-img">
-                <h2 class="card-title">Inherit emotional balance from your surrounding spirits</h2>
-            </div>
-        </transition>
+            <transition name="slide">
+                <div v-if="state.currentSlide === 0" class="slider-div first-img">
+                    <h2 class="card-title">Boost your congitive abilities to new levels</h2>
+                </div>
+                <div v-else-if="state.currentSlide === 1" class="slider-div second-img">
+                    <h2 class="card-title">Maximize your energistic synergy</h2>
+                </div>
+                <div v-else-if="state.currentSlide === 2" class="slider-div third-img">
+                    <h2 class="card-title">Develop the means to outwit the AI overlords</h2>
+                </div>
+                <div v-else-if="state.currentSlide === 3" class="slider-div fourth-img">
+                    <h2 class="card-title">Inherit emotional balance from your surrounding spirits</h2>
+                </div>
+            </transition>
         </div>
-        <h1>Home</h1>
     </div>
 </template>
 

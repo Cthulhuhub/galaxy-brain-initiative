@@ -63,4 +63,10 @@ body {
   background-color: rgb(246, 237, 250);
   margin: 0;
 }
+
+canvas {
+    z-index: -1;
+    position: absolute;
+    width: 99%;
+}
 </style>

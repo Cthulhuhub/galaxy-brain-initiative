@@ -1,5 +1,6 @@
 <template>
     <div class="exercises-list-container">
+        <SpaceAni />
         <div class="exercise-box" v-for="exercise in state.exercises" :key="exercise.name">
             <div :class="`${exercise.name}-box`">
                 <div class="exercise-img-container">
@@ -16,8 +17,12 @@
 
 <script>
 import { reactive } from 'vue';
+import SpaceAni from '../components/SpaceAni.vue'
 export default {
     name: "Exercises",
+    components: {
+        SpaceAni,
+    },
     setup() {
         const state = reactive({
             exercises: [
@@ -43,6 +48,10 @@ export default {
 </script>
 
 <style scoped>
+.exercise-list-container {
+    z-index: 10;
+}
+
 .exercise-box {
     width: 350px;
     height: 350px;

@@ -1,6 +1,6 @@
 <template>
+    <SpaceAni />
     <div class="exercises-list-container">
-        <SpaceAni />
         <div class="exercise-box" v-for="exercise in state.exercises" :key="exercise.name">
             <div :class="`${exercise.name}-box`">
                 <div class="exercise-img-container">

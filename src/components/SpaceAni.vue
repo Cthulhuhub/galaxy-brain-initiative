@@ -1,11 +1,11 @@
 <template>
-    <div id="pixi-container">
+    <div id="space-ani-container">
 
     </div>
 </template>
 
 <script>
-import { onMounted, reactive } from 'vue';
+import { onMounted, onUnmounted, reactive } from 'vue';
 import * as PIXI from 'pixi.js'
 export default {
     name: "SpaceAni",
@@ -18,7 +18,7 @@ export default {
 
         function initPixi() {
             state.app = new PIXI.Application({ width: window.innerWidth, height: window.innerHeight })
-            document.getElementById("pixi-container").appendChild(state.app.view)
+            document.getElementById("space-ani-container").appendChild(state.app.view)
 
             const img = require('../assets/images/space.jpg')
             const image = new PIXI.Sprite.from(img)
@@ -41,21 +41,24 @@ export default {
         }
 
         function animate() {
-            state.displacementSprite.x += 2
-            state.displacementSprite.y += 1
+            state.displacementSprite.x += 1.5
+            state.displacementSprite.y += 2
             requestAnimationFrame(animate)
         }
 
         onMounted(() => {
             setTimeout(initPixi(), 2000)
         })
+
+        onUnmounted(() => {
+            state.app.destroy()
+        })
     }
 }
 </script>
 
 <style scoped>
-#pixi-container {
+#space-ani-container {
     overflow: hidden;
-    z-index: -10;
 }
 </style>

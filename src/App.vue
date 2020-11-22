@@ -64,7 +64,7 @@ body {
   margin: 0;
 }
 
-canvas {
+#space-ani-container canvas {
     z-index: -1;
     position: absolute;
     width: 99%;

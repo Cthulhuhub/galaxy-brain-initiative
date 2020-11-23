@@ -22,7 +22,7 @@ export default {
     align-items: center;
     width: 100%;
     height: 100px;
-    background-color: rgb(72, 135, 207);
+    background-color: black;
     box-shadow: 4px 4px 4px 4px rgba(88, 88, 88, 0.116);
     color:white;
 }

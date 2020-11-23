@@ -27,7 +27,6 @@ export default {
 
         onMounted(() => {
             window.addEventListener('beforeunload', e => {
-                console.log('Here')
                 handleLeave()
                 e.returnValue = 'no'
             })
@@ -60,7 +59,7 @@ a {
 body {
   font-family: "Xanh Mono", monospace;
   font-size: 30px;
-  background-color: rgb(246, 237, 250);
+  background-color: rgb(255, 255, 255);
   margin: 0;
 }
 

@@ -31,25 +31,28 @@ export default {
                     title: 'Button Hydra',
                     info: 'Train your intuition and ingenuity by finding and slaying the correct Hydra head',
                     imgName: 'prismatic-dragon-head.png'
+                },
+                {
+                    name: 'ApplicableInformatics',
+                    title: 'Applicable Informatics',
+                    info: 'Ensure your mental data integrity and enhance galactic perceptions',
+                    imgName: 'crankbrain.png'
                 }
             ]
         })
 
-        function getImage(name) {
-            return `../assets/images/${name}`
-        }
-
         return {
-            state,
-            getImage
+            state
         }
     }
 }
 </script>
 
 <style scoped>
-.exercise-list-container {
+.exercises-list-container {
     z-index: 10;
+    display: flex;
+    flex-direction: row;
 }
 
 .exercise-box {
@@ -79,7 +82,7 @@ export default {
 
 .exercise-title {
     margin-bottom: 10px;
-    background-color: rgb(72, 135, 207);
+    background-color: rgb(0, 0, 0);
     width: 113%;
     text-align: center;
 }

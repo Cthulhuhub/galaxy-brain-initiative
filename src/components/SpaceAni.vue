@@ -26,7 +26,7 @@ export default {
             image.height = window.innerHeight;
             state.app.stage.addChild(image)
 
-            const disImg = require('../assets/images/maps/firstmap.png')
+            const disImg = require('../assets/images/maps/secondmap.png')
             state.displacementSprite = new PIXI.Sprite.from(disImg)
             let displacementFilter = new PIXI.filters.DisplacementFilter(state.displacementSprite)
             state.displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
@@ -35,19 +35,19 @@ export default {
 
             state.app.view.style.transform = 'scale(1.02)'
 
-            state.displacementSprite.scale.x = 10
-            state.displacementSprite.scale.y = 10
+            state.displacementSprite.scale.x = 0.9
+            state.displacementSprite.scale.y = 0.9
             animate()
         }
 
         function animate() {
-            state.displacementSprite.x += 1.5
-            state.displacementSprite.y += 2
+            state.displacementSprite.x += 2
+            state.displacementSprite.y += 1.5
             requestAnimationFrame(animate)
         }
 
         onMounted(() => {
-            setTimeout(initPixi(), 2000)
+            initPixi()
         })
 
         onUnmounted(() => {

@@ -1,11 +1,6 @@
 <template>
-    <div class="toast-button">Click hear for DE@LS oN Mega Toast! :) (Mega toast doesn't solve any issues with mega birds)</div>
-    <div class="secret-button-wrapper">
-        <a href="https://youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="secret-button">secret</a>
-    </div>
-    <div class="scratch-div" @click="handleScratch()">Scratch at the mind creator.</div>
     <div class="button-container" v-if="!state.winState">
-        <div class="hydra-head" v-for="(val, index) in state.countArr" v-bind:id="index" :key="index" @click="handleClick($event); state.countArr = new Array(state.countArr.length += 5)"></div>
+        <img :src="require('../assets/images/prismatic-dragon-head.png')" class="hydra-head" :style="`transform: scale(${state.scale}, ${state.scale})`" v-for="(val, index) in state.countArr" v-bind:id="index" :key="index" @click="handleClick($event); state.countArr = new Array(state.countArr.length += 5)" />
     </div>
     <div class='ur-a-weiner' v-if="state.winState">
         <div class="play-again-wrapper" @click="playAgain()" id="weiner-again"> Play Again </div>
@@ -20,20 +15,26 @@ export default {
     setup() {
         const state = reactive({
             countArr: new Array(5),
-            winState: false
+            winState: false,
+            scale: 3
         })
 
         function handleClick(e) {
             if (state.winState) {
                 return;
             }
-            const winner = Math.floor(Math.random() * (state.countArr.length - 1))
-
+            let winner = Math.floor(Math.random() * (state.countArr.length - 1))
+            if (winner < 50) {
+                winner += 25;
+            }
             if (parseInt(e.target.id, 10) === winner) {
                 state.winState = true
+            } else {
+                if (state.scale >= 0.25) {
+                    state.scale -= 0.04
+                }
             }
         }
-
 
         function handleScratch() {
             console.log('play')
@@ -57,57 +58,21 @@ export default {
 </script>
 
 <style scoped>
-.toast-button{
-    border: solid 1px black;
-    background-color: white;
-    width: 500px;
-    box-shadow: 5px 5px 5px 5px gray;
-    transition: all;
-    transition-duration: 10s;
-}
-.toast-button:hover{
-    color: pink;
-    font-size: 10px;
-    background-color: blue;
-    border-radius: 100px;
-    transform: scale(2.5, 0.5);
-    transition: all;
-    transition-duration: 10s;
-}
-
-.secret-button-wrapper{
-    margin-top: 20px;
-    color: rgb(246, 237, 250);
-}
-
-.secret-button{
-    color: rgb(246, 237, 250);
-    margin-top: 19px;
-    height: 40px;
-    width: 40px;
-}
-
-.scratch-div {
+.button-container {
     display: flex;
-    align-content: center;
-    justify-content: center;
-    font-size: 10px;
-    align-items: center;
-    text-align: center;
-    margin-top: 100px;
-    border-radius: 100px;
-    width: 100px;
-    height: 100px;
-    background-color: rgb(72, 48, 136);
-    color: white;
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
 }
 
 .hydra-head {
-    display: inline-block;
-    background-image: url('../assets/images/prismatic-dragon-head.png');
-    height: 200px;
-    width: 125px;
-    background-size: 125px 200px;
+    display: inline;
+    max-height: 300px;
+    max-width: 200px;
+    margin-top: 300px;
+}
+
+.hydra-head:hover {
+    cursor: pointer;
 }
 
 .ur-a-weiner {

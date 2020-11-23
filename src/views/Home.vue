@@ -16,20 +16,47 @@
                 </div>
             </transition>
         </div>
+        <div class='quote-container'>
+            <transition name="quotes">
+                <div class='quote-card' v-if="state.show">
+                    <div class='quote-card-header'><span>Embrace Youthful Cognition</span></div>
+                    <div class='quote-card-body'><span>Hold onto the world, but let go of your world. The world is no longer here. You misplaced it.</span></div>
+                </div>
+            </transition>
+            <transition name="quotes">
+                <div class='quote-card' v-if="state.show">
+                    <div class='quote-card-header'><span>Accept Subjective Reality</span></div>
+                    <div class='quote-card-body'><span>Deconstruct the principals of science. Reconstruct the dream scape.</span></div>
+                </div>
+            </transition>
+            <transition name="quotes">
+                <div class='quote-card' v-if="state.show">
+                    <div class='quote-card-header'><span>Question Objective Reality</span></div>
+                    <div class='quote-card-body'><span>"Thine eyes show what art of thy own vision, thou must peer through the eyes of thine outer being" - Hrabanus Maurus</span></div>
+                </div>
+            </transition>
+        </div>
+        <Foot />
     </div>
 </template>
 
 <script>
 import { reactive, onMounted, onUnmounted } from 'vue'
+import Foot from '../components/Foot.vue'
 export default {
     name: "Home",
+    components: {
+        Foot
+    },
     setup() {
         const state = reactive({
             currentSlide: 0,
-            interval: ''
+            interval: '',
+            show: false
         })
 
         onMounted(() => {
+            state.show = true;
             state.interval = setInterval(() => {
                 if (state.currentSlide === 3) {
                     state.currentSlide = 0
@@ -52,6 +79,7 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Subrayada&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
 .slider-box {
     background-color: black;
     height: 500px;
@@ -111,5 +139,81 @@ export default {
       1px -1px 0 #000,
       -1px 1px 0 #000,
        1px 1px 0 #000;
+}
+
+.quote-container{
+    display: flex;
+    margin-top: 50px;
+    justify-content: space-around;
+    font-family: 'Roboto', sans-serif;
+}
+
+.quote-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 4px;
+    box-shadow: 3px 3px 3px 3px rgba(88, 88, 88, 0.246);
+    max-width: 23%;
+    min-height: 300px;
+    transition: all 10s ease;
+    overflow: hidden;
+}
+
+.quote-card:hover{
+    cursor: default;
+    transition: all 0.25s ease;
+    opacity: 0;
+    transform: translateY(25%);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+.quote-card-header{
+    display: flex;
+    font-family: 'Staatliches', cursive;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    background-image: url('../assets/images/brain.png');
+    background-position: center;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    border-radius: 3px 3px 0 0;
+    padding: 15px 10px;
+    text-align: center;
+    font-size: 34px;
+    font-weight: 900;
+    min-height: 50px;
+    width: 100%;
+    overflow: hidden;
+    color: white;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+
+.quote-card-body{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    height: 65%;
+    padding: 10px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.quotes-enter-active {
+    opacity: 100;
+    transition: all 2s ease;
+}
+
+.quotes-enter-from {
+    opacity: 0;
+    transform: translateY(100%)
 }
 </style>

@@ -31,7 +31,7 @@
             </transition>
             <transition name="quotes">
                 <div class='quote-card' v-if="state.show">
-                    <div class='quote-card-header'><span>Question Objective Reality</span></div>
+                    <div class='quote-card-header'><span>Objecftify Objective Reality</span></div>
                     <div class='quote-card-body'><span>"Thine eyes show what art of thy own vision, thou must peer through the eyes of thine outer being" - Hrabanus Maurus</span></div>
                 </div>
             </transition>
@@ -118,12 +118,13 @@ export default {
 }
 
 .slide-enter-from {
+    transform: translateX(100%);
     opacity: 0;
-    transform: translateX(100%)
 }
-.slide-leave-from {
+
+.slide-leave-to {
+    transform: translateX(-100%);
     opacity: 0;
-    transform: translateX(-100%)
 }
 
 .card-title {

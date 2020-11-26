@@ -56,6 +56,7 @@ export default {
 }
 
 .exercise-box {
+    transition: all .75s ease;
     width: 350px;
     height: 350px;
     box-sizing: border-box;
@@ -68,7 +69,6 @@ export default {
 
 .exercise-box:hover {
     transform: scale(1.1, 1.1);
-    transition: all .75s ease;
 }
 
 .exercise-info {

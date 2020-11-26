@@ -1,8 +1,8 @@
 <template>
-    <SpaceAni />
     <div class="button-container" :style="`margin-top: ${state.margin}px`" v-if="!state.winState">
-        <transition-group name="heads">
-            <img :src="require('../assets/images/prismatic-dragon-head.png')" class="hydra-head" :style="`transform: scale(${state.scale}, ${state.scale})`" v-for="(val, index) in state.countArr" v-bind:id="index" :key="index" @click="handleClick($event); state.countArr = new Array(state.countArr.length += 5)" />
+        <transition-group name="heads" tag="div">
+            <component class="head-box" v-for="(head, i) in state.countArr" :is="head" :key="i" @click="handleClick($event)" :id="i" :scale="state.scale" :style="`transform: scale(${state.scale}, ${state.scale})`">
+            </component>
         </transition-group>
     </div>
     <div class='ur-a-weiner' v-if="state.winState">
@@ -11,19 +11,20 @@
 </template>
 
 <script>
-import { reactive } from 'vue';
-import SpaceAni from '../components/SpaceAni.vue'
+import { onMounted, reactive, markRaw } from 'vue';
+import HydraHead from '../components/HydraHead.vue'
 export default {
     name: "ButtonHydra",
     components: {
-        SpaceAni
+        HydraHead
     },
     setup() {
         const state = reactive({
-            countArr: new Array(5),
+            countArr: [],
             winState: false,
-            scale: 5,
-            margin: 400,
+            scale: 3,
+            margin: 200,
+            nextId: 5
         })
 
         function handleClick(e) {
@@ -38,32 +39,42 @@ export default {
             if (parseInt(e.target.id, 10) === winner) {
                 state.winState = true
             } else {
+                addHeads()
                 if (state.scale >= 0.25) {
-                    state.scale -= 0.08
+                    state.scale -= 0.02
                     if (state.margin > 0) {
-                        state.margin -= 8
+                        state.margin -= 2
                     }
                 }
             }
         }
 
-        function handleScratch() {
-            console.log('play')
-            const sound = new Audio( require('../assets/sounds/screach.mp3') ).play()
-            return sound;
+        onMounted(() => {
+            addHeads()
+        })
+
+        function addHeads() {
+            for (let i = 0; i < 5; i++) {
+                state.countArr.push(markRaw(HydraHead))
+                state.nextId++
+            }
         }
 
         function playAgain() {
-            state.countArr = new Array(5)
+            state.countArr = []
+            state.nextId = 0
+            for (let i = 0; i < 5; i++) {
+                state.countArr.push(markRaw(HydraHead))
+                state.nextId++
+            }
             state.winState = false
-            state.scale = 5
+            state.scale = 3
             state.margin = 200
         }
 
         return {
             state,
             handleClick,
-            handleScratch,
             playAgain,
         }
     }
@@ -73,16 +84,13 @@ export default {
 <style scoped>
 .button-container {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
     overflow-wrap: anywhere;
 }
 
-.hydra-head {
-    transition: all 1s ease;
-    display: inline-block;
-    max-height: 200px;
-    max-width: 200px;
-    min-width: 20px;
-    min-height: 20px;
+.head-box {
+    height: 100px;
 }
 
 .hydra-head:hover {
@@ -125,15 +133,26 @@ export default {
     transition-duration: 6000s;
 }
 
-.heads-enter-active,
+.heads-enter-active {
+    opacity: 100;
+}
+
 .heads-leave-active{
     transition: all 1s ease;
 }
 
-.heads-enter-from,
+.heads-enter-from {
+    opacity: 100;
+    transform: translateY(-100%);
+}
+
+.heads-enter-to {
+    opacity: 100;
+}
+
 .heads-leave-to {
     opacity: 0;
-    transform: translateY(30px)
+    transform: translateY(-100%);
 }
 
 .heads-move {

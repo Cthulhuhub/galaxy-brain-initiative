@@ -1,7 +1,7 @@
 <template>
     <div class="button-container" :style="`margin-top: ${state.margin}px`" v-if="!state.winState">
-        <transition-group name="heads" tag="div">
-            <component class="head-box" v-for="(head, i) in state.countArr" :is="head" :key="i" @click="handleClick($event)" :id="i" :scale="state.scale" :style="`transform: scale(${state.scale}, ${state.scale})`">
+        <transition-group name="heads" tag="div" class="ani-box">
+            <component class="head-box" v-for="(head, i) in state.countArr" :is="head" :key="i" @click="handleClick($event)" :id="i" :scale="state.scale">
             </component>
         </transition-group>
     </div>
@@ -22,9 +22,10 @@ export default {
         const state = reactive({
             countArr: [],
             winState: false,
-            scale: 3,
+            scale: 5,
             margin: 200,
-            nextId: 5
+            nextId: 5,
+            removedCount: 0
         })
 
         function handleClick(e) {
@@ -39,33 +40,54 @@ export default {
             if (parseInt(e.target.id, 10) === winner) {
                 state.winState = true
             } else {
-                addHeads()
+                for (let i = 0; i < 5; i++) {
+                    setTimeout(addHead, 200*i)
+                }
+                let boxes = document.querySelectorAll(".head-box")
+                boxes.forEach(box => {
+                    box.style.transform = `scale(${state.scale})`
+                })
                 if (state.scale >= 0.25) {
                     state.scale -= 0.02
                     if (state.margin > 0) {
-                        state.margin -= 2
+                        state.margin -= 0.5
                     }
                 }
             }
+            shuffleArray(state.countArr)
         }
 
         onMounted(() => {
-            addHeads()
+            for (let i = 0; i < 5; i++) {
+                setTimeout(addHead, 200*i)
+            }
         })
 
-        function addHeads() {
-            for (let i = 0; i < 5; i++) {
-                state.countArr.push(markRaw(HydraHead))
-                state.nextId++
+        function shuffleArray(array) {
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
             }
+        }
+
+        function addHead() {
+            let rawHead = markRaw(HydraHead)
+            state.countArr.push(rawHead)
+            state.nextId++
+            let boxes = document.querySelectorAll(".hydra-head")
+            setTimeout(() => {
+                boxes.forEach(box => {
+                    box.style.transform = `scale(${state.scale})`
+                })
+            }, 1000)
         }
 
         function playAgain() {
             state.countArr = []
-            state.nextId = 0
             for (let i = 0; i < 5; i++) {
-                state.countArr.push(markRaw(HydraHead))
-                state.nextId++
+                setTimeout(addHead, 200*i)
             }
             state.winState = false
             state.scale = 3
@@ -82,10 +104,8 @@ export default {
 </script>
 
 <style scoped>
-.button-container {
+.ani-box {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
     overflow-wrap: anywhere;
 }
 
@@ -142,8 +162,8 @@ export default {
 }
 
 .heads-enter-from {
-    opacity: 100;
-    transform: translateY(-100%);
+    opacity: 0;
+    transform: translateY(200%);
 }
 
 .heads-enter-to {
@@ -152,7 +172,7 @@ export default {
 
 .heads-leave-to {
     opacity: 0;
-    transform: translateY(-100%);
+    transform: translateY(-200%);
 }
 
 .heads-move {

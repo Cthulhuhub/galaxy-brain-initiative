@@ -24,7 +24,7 @@ export default {
             winState: false,
             scale: 5,
             margin: 200,
-            nextId: 5,
+            nextId: 0,
             removedCount: 0
         })
 
@@ -43,10 +43,6 @@ export default {
                 for (let i = 0; i < 5; i++) {
                     setTimeout(addHead, 200*i)
                 }
-                let boxes = document.querySelectorAll(".head-box")
-                boxes.forEach(box => {
-                    box.style.transform = `scale(${state.scale})`
-                })
                 if (state.scale >= 0.25) {
                     state.scale -= 0.02
                     if (state.margin > 0) {
@@ -54,7 +50,6 @@ export default {
                     }
                 }
             }
-            shuffleArray(state.countArr)
         }
 
         onMounted(() => {
@@ -63,25 +58,14 @@ export default {
             }
         })
 
-        function shuffleArray(array) {
-            for (var i = array.length - 1; i > 0; i--) {
-                var j = Math.floor(Math.random() * (i + 1));
-                var temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-            }
-        }
-
         function addHead() {
             let rawHead = markRaw(HydraHead)
             state.countArr.push(rawHead)
+            let box = document.getElementById(state.nextId - 1)
+            if (box) {
+                box.style.transform = `scale(${state.scale})`
+            }
             state.nextId++
-            let boxes = document.querySelectorAll(".hydra-head")
-            setTimeout(() => {
-                boxes.forEach(box => {
-                    box.style.transform = `scale(${state.scale})`
-                })
-            }, 1000)
         }
 
         function playAgain() {
@@ -90,7 +74,7 @@ export default {
                 setTimeout(addHead, 200*i)
             }
             state.winState = false
-            state.scale = 3
+            state.scale = 5
             state.margin = 200
         }
 
@@ -111,6 +95,7 @@ export default {
 
 .head-box {
     height: 100px;
+    display: inline-block;
 }
 
 .hydra-head:hover {
@@ -159,11 +144,12 @@ export default {
 
 .heads-leave-active{
     transition: all 1s ease;
+    position: absolute;
 }
 
 .heads-enter-from {
     opacity: 0;
-    transform: translateY(200%);
+    transform: translateY(500%);
 }
 
 .heads-enter-to {
@@ -172,7 +158,7 @@ export default {
 
 .heads-leave-to {
     opacity: 0;
-    transform: translateY(-200%);
+    transform: translateY(-500%);
 }
 
 .heads-move {

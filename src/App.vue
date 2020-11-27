@@ -18,11 +18,11 @@ export default {
     name: "App",
     components: {
         NavBar,
-        ConfirmLeave
+        ConfirmLeave,
     },
     setup() {
         const state = reactive({
-            isConfirmOpen: false
+            isConfirmOpen: false,
         })
 
         onMounted(() => {

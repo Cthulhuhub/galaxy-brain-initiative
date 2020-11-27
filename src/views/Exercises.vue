@@ -37,8 +37,14 @@ export default {
                     title: 'Applicable Informatics',
                     info: 'Ensure your mental data integrity and enhance galactic perceptions',
                     imgName: 'crankbrain.png'
+                },
+                {
+                    name: 'ImpossibleButton',
+                    title: 'Agility Enhancement',
+                    info: 'Prepare yourself for one on one CQC with AI combatants',
+                    imgName: 'speed.jpg'
                 }
-            ]
+            ],
         })
 
         return {

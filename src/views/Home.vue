@@ -1,4 +1,7 @@
 <template>
+    <div class="loading-container" v-if="state.loading">
+        <Loading />
+    </div>
     <div class="home-body">
         <div class="slider-box">
             <transition name="slide">
@@ -43,27 +46,33 @@
 <script>
 import { reactive, onMounted, onUnmounted } from 'vue'
 import Foot from '../components/Foot.vue'
+import Loading from '../components/Loading.vue'
 export default {
     name: "Home",
     components: {
-        Foot
+        Foot,
+        Loading
     },
     setup() {
         const state = reactive({
             currentSlide: 0,
             interval: '',
-            show: false
+            show: false,
+            loading: true
         })
 
         onMounted(() => {
-            state.show = true;
-            state.interval = setInterval(() => {
-                if (state.currentSlide === 3) {
-                    state.currentSlide = 0
-                } else {
-                    state.currentSlide++
-                }
-            }, 5500)
+            setTimeout(() => {
+                state.show = true;
+                state.loading = false
+                state.interval = setInterval(() => {
+                    if (state.currentSlide === 3) {
+                        state.currentSlide = 0
+                    } else {
+                        state.currentSlide++
+                    }
+                }, 5500)
+            }, 7500)
         })
 
         onUnmounted(() => {
@@ -89,6 +98,7 @@ export default {
 .slider-div {
     height: 100%;
     background-position: center;
+    position: relative;
 }
 
 .first-img {
@@ -216,5 +226,13 @@ export default {
 .quotes-enter-from {
     opacity: 0;
     transform: translateY(100%)
+}
+
+.loading-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    z-index: 20;
 }
 </style>

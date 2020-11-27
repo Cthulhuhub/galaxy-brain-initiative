@@ -57,7 +57,7 @@ a{
 }
 
 .links {
-    z-index: 20;
+    z-index: 5;
     text-align: center;
     transition: all 2s ease;
 }

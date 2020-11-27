@@ -20,7 +20,13 @@ const routes = [
     path: '/exercises/applicable-informatics',
     name: 'ApplicableInformatics',
     component: () => import('../views/ApplicableInformatics.vue')
-  }
+  },
+  {
+    path: '/exercises/agility',
+    name: 'ImpossibleButton',
+    component: () => import('../views/ImpossibleButton.vue')
+  },
+
 ]
 
 const router = createRouter({

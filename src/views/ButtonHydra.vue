@@ -37,6 +37,7 @@ export default {
                 winner = '';
             }
 
+
             if (parseInt(e.target.id, 10) === winner) {
                 state.winState = true
             } else {
@@ -50,6 +51,10 @@ export default {
                     }
                 }
             }
+            let boxes = document.querySelectorAll('.hydra-head')
+            boxes.forEach(box => {
+                box.style.transform = `scale(${state.scale})`
+            })
         }
 
         onMounted(() => {
@@ -61,11 +66,11 @@ export default {
         function addHead() {
             let rawHead = markRaw(HydraHead)
             state.countArr.push(rawHead)
-            let box = document.getElementById(state.nextId - 1)
-            if (box) {
-                box.style.transform = `scale(${state.scale})`
-            }
             state.nextId++
+            let boxes = document.querySelectorAll('.hydra-head')
+            boxes.forEach(box => {
+                box.style.transform = `scale(${state.scale})`
+            })
         }
 
         function playAgain() {

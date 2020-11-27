@@ -1,5 +1,5 @@
 <template>
-    <img :src="require('../assets/images/prismatic-dragon-head.png')" class="hydra-head" :style="`transform: scale(${state.scale}, ${state.scale})`" />
+    <img :src="require('../assets/images/prismatic-dragon-head.png')" class="hydra-head" />
 </template>
 
 <script>
@@ -9,7 +9,7 @@ export default {
     setup(props) {
 
         const state = reactive({
-            scale: props.scale
+            scale: props.scale,
         })
 
         return {

@@ -27,7 +27,7 @@ export default {
             setTimeout(() => {
                 animateMove(button, "left", left).play()
                 animateMove(button, "top", top).play()
-            }, 100)
+            }, 50)
         }
 
         function getNum(num) {

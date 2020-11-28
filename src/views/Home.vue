@@ -72,7 +72,7 @@ export default {
                         state.currentSlide++
                     }
                 }, 5500)
-            }, 7500)
+            }, 5500)
         })
 
         onUnmounted(() => {

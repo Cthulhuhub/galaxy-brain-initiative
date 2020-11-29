@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'api'
 ]
 
 MIDDLEWARE = [
@@ -82,7 +83,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.environ.get('DATABASE'),
         'USER': os.environ.get('USER'),
-        'PASSWORD': os.environ.get('PASSWORD')
+        'PASSWORD': os.environ.get('PASSWORD'),
+        'HOST': 'localhost'
     }
 }
 

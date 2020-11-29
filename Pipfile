@@ -9,6 +9,8 @@ verify_ssl = true
 django = "*"
 psycopg2-binary = "*"
 python-dotenv = "*"
+djangorestframework = "*"
+django-cors-headers = "*"
 
 [requires]
 python_version = "3.8"
